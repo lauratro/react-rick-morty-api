@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
@@ -8,6 +8,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
 function SearchBar() {
+    
+   
     return (
         <div>
         
@@ -19,7 +21,7 @@ function SearchBar() {
  </Col>
    <Col xs={6} md={6}>
     <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2 " />
+      <FormControl type="text" placeholder="Search" className="mr-sm-2 "  value="" />
       <Button variant="outline-dark">Search</Button>
                         </Form>
                         </Col>
@@ -30,3 +32,4 @@ function SearchBar() {
 }
 
 export default SearchBar;
+

@@ -8,8 +8,10 @@ import ModalCreator from "./Modal";
 import './Cards.css';
 
 function CharacterCards(props) {
-    let myData1 = props.myData;
     
+    let dataFetch = props.character;
+       
+ 
     let myStyleImg = {
         width: 300,
         height: 300
@@ -17,8 +19,8 @@ function CharacterCards(props) {
     return (<CardGroup id="CardGroup">
         <Row className="d-flex">
            
-        {props.myData.length ?
-            props.myData.map(character => {
+        {dataFetch.length ?
+            dataFetch.map(character => {
                 return <Card className="p-3" key={character.id}>
                 < div className="flip-card">
         <div className="flip-card-inner">
@@ -28,7 +30,7 @@ function CharacterCards(props) {
             <div className="flip-card-back">
                        <h1>{character.name}</h1>
                        <p>{character.status }</p>
-                                <ModalCreator myData={ myData1}/>
+                              <ModalCreator myData={character} />
             </div>
         </div>
                     </div>
@@ -40,9 +42,8 @@ function CharacterCards(props) {
                     
                 </Container>
                   
-                }
-             
-            </Row>
+            }
+                   </Row>
          </CardGroup>
    )
 }

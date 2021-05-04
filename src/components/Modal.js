@@ -1,63 +1,44 @@
 import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import ModalTitle from './ModalTitle';
+
 
 function ModalCreator(props) {
+
     let dataFetch = props.myData;
-   
-      
     const [show, setShow] = useState(false);
+   
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+   
+  
 
-            return (
-      
-                <>
-           
-                    <Button variant="primary" onClick={handleShow}>
-                        See more
+
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Show more
       </Button>
-         {props.myData.length ? (
-          props.myData.map((character) => {
-            return (
-                    <Modal show={show} onHide={handleClose}>
-                      
-                
-               
-          
-                        <Modal.Header closeButton>
-                           
-                                <Modal.Title>
-                                    {character.name}
-                                </Modal.Title>
-                             
-                        </Modal.Header>
-                              
-                        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                        
-                        <Modal.Footer>
-                         
-                            <Button variant="secondary" onClick={handleClose}>
-                                    Close
+          <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                  <Modal.Title>{props.myData.name}</Modal.Title>
+                  </Modal.Header>
+              <Modal.Body><img src={props.myData.image} alt="picture" />
+                  <p>{dataFetch.gender}</p>
+                  <p>{dataFetch.species }</p>
+              </Modal.Body>
+                  <Modal.Footer>
+                      <Button variant="secondary" onClick={handleClose}>
+                          Close
           </Button>
        
-                        </Modal.Footer>
-        
-                    </Modal>
-              );
-          })
-        ) : (
-          <p>Loading</p>
-        )}
-                </>
- 
-       
-        
-    )
-                
-        
+                  </Modal.Footer>
+              </Modal>
+
+    </>
+  );
+   
 }
 
 
