@@ -11,36 +11,40 @@ import CharacterCards from './Cards';
 
 function Home() {
     const [characters, setCharacters] = useState([]);
-     const [filteredData, setFilteredData] = useState(characters);
+    const [filteredData, setFilteredData] = useState([]);
+    const [search, setSearch] = useState("");
     let fetchApi = () => {
         fetch("https://rickandmortyapi.com/api/character/").then((response )=> response.json())
             .then((data) => {
-                setCharacters(data.results);
-               setFilteredData(data.results);
+                 setCharacters(data.results);
+            
+             
     })
     }
-    useEffect(() => {
+   
+   
+useEffect(() => {
+    if (search == "") {
         fetchApi();
     }
+    else {
+        setCharacters(characters.filter(character => {
+            return character.name.toLowerCase().includes(search.toLowerCase())
+        }))
+    }
+    
+    },[search]
         
-    );
+    );  
 
-const handleSearch = (event) => {
-    
-let value = event.target.value.toLowerCase();
-let result = [];
-console.log(value);
-result = characters.filter((data) => {
-return data.title.search(value) != -1;
-});
-setFilteredData(result);
-}
-    
+
+   
   
     return (
         
-         <React.Fragment>
-            <SearchBar character={characters} onChange={handleSearch()}/>
+        <React.Fragment>
+            <input type="text" placeholder="Search" className="mr-sm-2 " onChange={event=>setSearch(event.target.value)} />
+          {/*   <SearchBar character={characters} onChange={event=>setSearch(event.target.value)}/> */}
            
         <CharacterCards  character={characters} />
            

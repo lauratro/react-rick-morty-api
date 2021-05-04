@@ -7,8 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
-function SearchBar() {
-    
+function SearchBar(props) {
+  
    
     return (
         <div>
@@ -21,8 +21,8 @@ function SearchBar() {
  </Col>
    <Col xs={6} md={6}>
     <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2 "  value="" />
-      <Button variant="outline-dark">Search</Button>
+      <FormControl  />
+      <Button variant="outline-dark" >Search</Button>
                         </Form>
                         </Col>
                </Row>  
