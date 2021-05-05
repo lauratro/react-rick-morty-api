@@ -1,11 +1,11 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
+
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 import ModalCreator from "./Modal";
-import './Cards.css';
+import '../styles/Cards.css';
 
 function CharacterCards(props) {
     
@@ -19,7 +19,7 @@ function CharacterCards(props) {
     return (<CardGroup id="CardGroup">
         <Row className="d-flex">
            
-        {dataFetch.length ?
+        {
             dataFetch.map(character => {
                 return <Card className="p-3" key={character.id}>
                 < div className="flip-card">
@@ -37,10 +37,7 @@ function CharacterCards(props) {
                      
             </Card>
            })
-                : <Container className="loading-container">
-                    <Row><Col xs={12}><div className="loader"></div></Col></Row>
-                    
-                </Container>
+              
                   
             }
                    </Row>

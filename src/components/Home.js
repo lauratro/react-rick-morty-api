@@ -1,27 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import CharacterCards from './Cards';
-import isLoading from './isLoading';
+import '../styles/Home.css'
+import LoadingWheel from './Loading';
+import SearchBarStyle from '../styles/style.js'
 
 
 function Home() {
     const [characters, setCharacters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    
+   const [count, setCount] = useState(1); 
     const [search, setSearch] = useState("");
+
+
+
+
     let fetchApi = () => {
-        fetch("https://rickandmortyapi.com/api/character/").then((response )=> response.json())
-            .then((data) => {
-                   setIsLoading(false)
-                 setCharacters(data.results);
+        fetch(`https://rickandmortyapi.com/api/character/?page=${count}`).then((response) => response.json())
+            .then((data) => {   
+                setCharacters(data.results);
+                 setIsLoading(false)
             
             
-    })
+            })
     }
    
-   
+    
+  
     useEffect(() => {
-        if (isLoading) {
-         
+        
+     
+           
             if (search === "") {
                
                 fetchApi();
@@ -32,31 +40,45 @@ function Home() {
                     return character.name.toLowerCase().includes(search.toLowerCase())
                 }))
                 
-            }
-        }
-            else {
-                <isLoading />
-            }
+            
     
-  
-    
-    },[search]
+            }
         
-    );  
+        }, [search,count]
+   
+      
+        )
+ 
+  
 
+        // Create handleIncrement event handler
+        const handleIncrement = () => {
+            setCount(prevCount => prevCount + 1);
+        };
 
+        //Create handleDecrement event handler
+        const handleDecrement = () => {
+            setCount(prevCount => prevCount - 1);
+        };
+    
    
   
     return (
         
         <React.Fragment>
-            <input type="text" placeholder="Search" className="mr-sm-2 " onChange={event=>setSearch(event.target.value)} />
-         
-           
+            <div style={SearchBarStyle()}>
+            <input  type="text" placeholder="Search" className="mr-sm-2 my-4 p-2 textSearch" onChange={event=>setSearch(event.target.value)} />
+         </div>
+            {!isLoading ?
+                <React.Fragment>
         <CharacterCards  character={characters} />
-           
-                  
-
+           <div className="btnCounter-container">
+                        <button className="font-weight-bold" onClick={handleDecrement} disabled = {count  === 1 ?true: false }>{"<"}</button>
+        <h5 className="mx-2">Page nr: {count}</h5>
+                        <button class="font-weight-bold" onClick={handleIncrement}>{">"}</button>
+                        </div>
+                    </React.Fragment> :   <div><LoadingWheel /></div>
+} 
     </React.Fragment>         
 )
            
