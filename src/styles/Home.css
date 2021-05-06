@@ -1,7 +1,7 @@
 /*Home*/
 .btnCounter-container {
   position: relative;
-  top: 200px;
+  top: 150px;
   display: flex;
   justify-content: center;
 }

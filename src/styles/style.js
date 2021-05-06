@@ -11,6 +11,3 @@ function SearchBarStyle() {
 }
 
 export default SearchBarStyle;
-export function ElemModal() {
-  return {};
-}
