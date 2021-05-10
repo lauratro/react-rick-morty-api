@@ -74,7 +74,7 @@ function Home() {
            {/*  <div style={SearchBarStyle()}>
             <input  type="text" placeholder="Search" className="mr-sm-2 my-4 p-2 textSearch" onChange={event=>setSearch(event.target.value)} />
          </div> */}
-            <Input data={search} onChange={(e)=>{onchange(e)}} />
+            <Input data={search} onchange={(e)=>{onchange(e)}} />
             {!isLoading ?
                 <React.Fragment>
         <CharacterCards  character={characters} />

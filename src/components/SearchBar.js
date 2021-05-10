@@ -4,7 +4,7 @@ const Input = function (props) {
     console.log("props in Input:", props)
 
     const handleChange = event => {
-        props.onChange(event.target.value)
+        props.onchange(event.target.value)
     }
 
     return (
